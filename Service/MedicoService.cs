@@ -42,9 +42,9 @@ namespace Clinica.Service
             return _mapper.Map<IEnumerable<MedicoDTO>>(medicoEntity);   
         }
 
-        public async Task Remove(long? id)
+        public async Task Remove(long id)
         {
-            var medicoEntity = _medicoRepository.GetByIdAsync((long)id).Result;
+            var medicoEntity = _medicoRepository.GetByIdAsync(id).Result;
             await _medicoRepository.RemoveAsync(medicoEntity);
         }
 

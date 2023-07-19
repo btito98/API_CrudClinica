@@ -12,9 +12,11 @@ namespace Clinica
         public static void AddDependencyInjection(IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IMedicoRepository, MedicoRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             services.AddScoped<IMedicoService, MedicoService>();
-
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            
             services.AddAutoMapper(typeof(Mapping));
         }
     }

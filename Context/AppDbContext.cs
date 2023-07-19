@@ -14,6 +14,7 @@ namespace Clinica.Context
         }
 
         public DbSet<Medico> Medico { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
     }
 }

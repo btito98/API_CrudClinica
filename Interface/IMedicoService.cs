@@ -10,6 +10,6 @@ namespace Clinica.Interface
         Task<MedicoDTO> GetByCRM(int? CRM);
         Task Add(MedicoDTO medicoDTO);
         Task Update(MedicoDTO medicoDTO);
-        Task Remove(long? id);
+        Task Remove(long id);
     }
 }

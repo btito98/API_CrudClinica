@@ -9,6 +9,7 @@ namespace Clinica
         public Mapping()
         { 
             CreateMap<Medico, MedicoDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioDTO>().ReverseMap();
         }
     }
 }
