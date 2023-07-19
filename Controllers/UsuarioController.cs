@@ -3,7 +3,6 @@ using Clinica.Entities;
 using Clinica.Interface;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Clinica.Controllers
 {
@@ -16,7 +15,7 @@ namespace Clinica.Controllers
         {
             _usuarioService = usuarioService;
         }
-        // GET: api/<UsuarioController>
+        
         [HttpGet("BuscarTodosUsuarios/")]
         public async Task<ActionResult<IEnumerable<UsuarioDTO>>> Get()
         {
@@ -31,14 +30,14 @@ namespace Clinica.Controllers
             }
         }
 
-        // GET api/<UsuarioController>/5
+        
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<UsuarioController>
+       
         [HttpPost("Criar/")]
         public async Task<ActionResult> Post([FromBody] UsuarioDTO usuarioDTO)
         {
@@ -54,22 +53,30 @@ namespace Clinica.Controllers
 
         }
 
-        // PUT api/<UsuarioController>/5
+        
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult<UsuarioDTO>>Put(int id, [FromBody] UsuarioDTO usuarioDTO)
         {
+            try
+            {
+                await _usuarioService.Update(usuarioDTO);
+                return Ok(usuarioDTO);
+            }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // DELETE api/<UsuarioController>/5
+       
         [HttpDelete("Deletar/{id}")]
         public async Task<ActionResult<UsuarioDTO>> Delete(long id)
         {
             try
             {
-                var usuario = _usuarioService.GetById(id);
                 await _usuarioService.Remove(id);
                 return Ok();
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

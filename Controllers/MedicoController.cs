@@ -13,12 +13,12 @@ namespace Clinica.Controllers
     public class MedicoController : ControllerBase
     {
         private readonly IMedicoService _mediicoService;
-         
+
         public MedicoController(IMedicoService medicoService)
         {
             _mediicoService = medicoService;
         }
-        
+
         [HttpGet("BuscarTodosMedicos/")]
         public async Task<ActionResult<IEnumerable<MedicoDTO>>> Get()
         {
@@ -28,13 +28,13 @@ namespace Clinica.Controllers
 
 
         [HttpGet("BuscarPorId/{id}")]
-        public async Task<ActionResult<MedicoDTO>> Get(int id)
+        public async Task<ActionResult<MedicoDTO>> Get(long id)
         {
             var medico = await _mediicoService.GetById(id);
             return Ok(medico);
         }
 
-     
+
         [HttpPost("Criar/")]
         public async Task<ActionResult> Post([FromBody] MedicoDTO medicoDTO)
         {
@@ -42,28 +42,45 @@ namespace Clinica.Controllers
             {
                 await _mediicoService.Add(medicoDTO);
                 return Ok();
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-              
+
         }
 
-      
+
         [HttpPut("Atualizar/{id}")]
         public async Task<ActionResult<Medico>> Put(int id, [FromBody] MedicoDTO medicoDTO)
         {
-            await _mediicoService.Update(medicoDTO);
-            return Ok(medicoDTO);
+            try
+            {
+
+                await _mediicoService.Update(medicoDTO);
+                return Ok(medicoDTO);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        
+
+
         [HttpDelete("Deletar/{id}")]
-        public async Task<ActionResult<MedicoDTO>> Delete(long id)
-        {
-            var medico = await _mediicoService.GetById(id);
-            await _mediicoService.Remove(id);
-            return Ok();
+            public async Task<ActionResult<MedicoDTO>> Delete(long id)
+            {
+                try
+                {
+                    await _mediicoService.Remove(id);
+                    return Ok();
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+
+            }
         }
     }
-}

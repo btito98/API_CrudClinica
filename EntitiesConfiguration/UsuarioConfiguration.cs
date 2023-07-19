@@ -1,4 +1,5 @@
 ﻿using Clinica.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,6 +22,9 @@ namespace Clinica.EntitiesConfiguration
                 .HasMaxLength(20)
                 .HasColumnType("varchar(20)")
                 .IsRequired();
+
+            builder.HasData(
+                new {Login = "admim", Senha = "admim"});
         }
     }
 }
