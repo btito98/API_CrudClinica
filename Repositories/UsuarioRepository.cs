@@ -22,7 +22,7 @@ namespace Clinica.Repositories
 
         public async Task<Usuario> GetByIdAsync(int id)
         {
-            return await _usuarioContext.Usuario.SingleOrDefaultAsync(u => u.Id == id);
+            return await _usuarioContext.Usuario.FirstOrDefaultAsync(u => u.Id == id);
         }
 
         public async Task<IEnumerable<Usuario>> GetUsuariosAsync()

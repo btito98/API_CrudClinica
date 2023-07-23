@@ -16,5 +16,15 @@ namespace Clinica.Context
         public DbSet<Medico> Medico { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
 
+
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Habilita o log de dados sensíveis
+                optionsBuilder.EnableSensitiveDataLogging();
+            }
+        }
     }
 }

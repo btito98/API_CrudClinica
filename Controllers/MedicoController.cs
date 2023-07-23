@@ -22,16 +22,31 @@ namespace Clinica.Controllers
         [HttpGet("BuscarTodosMedicos/")]
         public async Task<ActionResult<IEnumerable<MedicoDTO>>> Get()
         {
-            var medicos = await _mediicoService.GetMedicos();
-            return Ok(medicos);
+            try
+            {
+                var medicos = await _mediicoService.GetMedicos();
+                return Ok(medicos);
+            }catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+           
         }
 
 
         [HttpGet("BuscarPorId/{id}")]
         public async Task<ActionResult<MedicoDTO>> Get(int id)
         {
-            var medico = await _mediicoService.GetById(id);
-            return Ok(medico);
+            try
+            {
+                var medico = await _mediicoService.GetById(id);
+                return Ok(medico);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); 
+            }
+
         }
 
 
@@ -56,7 +71,6 @@ namespace Clinica.Controllers
         {
             try
             {
-
                 await _mediicoService.Update(medicoDTO);
                 return Ok(medicoDTO);
             }
@@ -67,20 +81,19 @@ namespace Clinica.Controllers
         }
 
 
-
         [HttpDelete("Deletar/{id}")]
-            public async Task<ActionResult<MedicoDTO>> Delete(int id)
+        public async Task<ActionResult<MedicoDTO>> Delete(int id)
+        {
+            try
             {
-                try
-                {
-                    await _mediicoService.Remove(id);
-                    return Ok();
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest(ex.Message);
-                }
-
+                await _mediicoService.Remove(id);
+                return Ok();
             }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
     }
+}

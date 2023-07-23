@@ -31,10 +31,17 @@ namespace Clinica.Controllers
         }
 
         
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("BuscarPorId/{id}")]
+        public async Task<ActionResult<UsuarioDTO>> Get(int id)
         {
-            return "value";
+            try
+            {
+                var usuario = await _usuarioService.GetById(id);
+                return Ok();
+            }catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
        
@@ -54,7 +61,7 @@ namespace Clinica.Controllers
         }
 
         
-        [HttpPut("{id}")]
+        [HttpPut("Atualizar/{id}")]
         public async Task<ActionResult<UsuarioDTO>>Put(int id, [FromBody] UsuarioDTO usuarioDTO)
         {
             try
