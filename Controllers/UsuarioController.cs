@@ -69,7 +69,7 @@ namespace Clinica.Controllers
 
        
         [HttpDelete("Deletar/{id}")]
-        public async Task<ActionResult<UsuarioDTO>> Delete(long id)
+        public async Task<ActionResult<UsuarioDTO>> Delete(int id)
         {
             try
             {

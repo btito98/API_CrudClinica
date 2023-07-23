@@ -24,7 +24,7 @@ namespace Clinica.EntitiesConfiguration
                 .IsRequired();
 
             builder.HasData(
-                new {Login = "admim", Senha = "admim"});
+                new {Id = 1, Login = "admim", Senha = "admim"});
         }
     }
 }

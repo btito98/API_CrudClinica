@@ -14,7 +14,7 @@ namespace Clinica.Migrations
                 name: "Usuario",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Login = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false),
                     Senha = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)

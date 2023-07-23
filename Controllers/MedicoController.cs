@@ -28,7 +28,7 @@ namespace Clinica.Controllers
 
 
         [HttpGet("BuscarPorId/{id}")]
-        public async Task<ActionResult<MedicoDTO>> Get(long id)
+        public async Task<ActionResult<MedicoDTO>> Get(int id)
         {
             var medico = await _mediicoService.GetById(id);
             return Ok(medico);
@@ -69,7 +69,7 @@ namespace Clinica.Controllers
 
 
         [HttpDelete("Deletar/{id}")]
-            public async Task<ActionResult<MedicoDTO>> Delete(long id)
+            public async Task<ActionResult<MedicoDTO>> Delete(int id)
             {
                 try
                 {

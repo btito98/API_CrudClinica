@@ -20,7 +20,7 @@ namespace Clinica.Repositories
             return usuario;
         }
 
-        public async Task<Usuario> GetByIdAsync(long id)
+        public async Task<Usuario> GetByIdAsync(int id)
         {
             return await _usuarioContext.Usuario.SingleOrDefaultAsync(u => u.Id == id);
         }

@@ -21,14 +21,9 @@ namespace Clinica.Repositories
             return medico;
         }
 
-        public async Task<Medico> GetByCRMAsync(int? CRM)
+        public async Task<Medico> GetByIdAsync(int id)
         {
-            return await _medicoContext.Medico.SingleOrDefaultAsync(m => m.CRM == CRM);
-        }
-
-        public async Task<Medico> GetByIdAsync(long id)
-        {
-            return await _medicoContext.Medico.SingleOrDefaultAsync(m => m.Id == id);
+            return await _medicoContext.Medico.FirstOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task<IEnumerable<Medico>> GetMedicosAsync()

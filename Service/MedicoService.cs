@@ -23,16 +23,9 @@ namespace Clinica.Service
             await _medicoRepository.AddAsync(medicoEntity);
 
         }
-
-        public async Task<MedicoDTO> GetByCRM(int? CRM)
+        public async Task<MedicoDTO> GetById(int id)
         {
-           var medicoEntity = _medicoRepository.GetByCRMAsync(CRM);
-            return _mapper.Map<MedicoDTO>(medicoEntity);
-        }
-
-        public async Task<MedicoDTO> GetById(long id)
-        {
-            var medicoEntity = _medicoRepository.GetByIdAsync(id);
+            var medicoEntity = _medicoRepository.GetByIdAsync(id).Result;
             return _mapper.Map<MedicoDTO>(medicoEntity);
         }
 
@@ -42,7 +35,7 @@ namespace Clinica.Service
             return _mapper.Map<IEnumerable<MedicoDTO>>(medicoEntity);   
         }
 
-        public async Task Remove(long id)
+        public async Task Remove(int id)
         {
             var medicoEntity = _medicoRepository.GetByIdAsync(id).Result;
             await _medicoRepository.RemoveAsync(medicoEntity);

@@ -22,7 +22,7 @@ namespace Clinica.Service
             await _usuarioRepository.AddAsync(usuarioEntity);
         }
 
-        public async Task<UsuarioDTO> GetById(long id)
+        public async Task<UsuarioDTO> GetById(int id)
         {
            var usuarioEntity = _usuarioRepository.GetByIdAsync(id);
             return _mapper.Map<UsuarioDTO>(usuarioEntity);
@@ -34,7 +34,7 @@ namespace Clinica.Service
             return _mapper.Map<IEnumerable<UsuarioDTO>>(usuarioEntity);
         }
 
-        public async Task Remove(long id)
+        public async Task Remove(int id)
         {
             var usuarioEntity = _usuarioRepository.GetByIdAsync(id).Result;
             await _usuarioRepository.RemoveAsync(usuarioEntity);

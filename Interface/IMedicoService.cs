@@ -6,10 +6,9 @@ namespace Clinica.Interface
     public interface IMedicoService
     {
         Task<IEnumerable<MedicoDTO>> GetMedicos();
-        Task<MedicoDTO> GetById(long id);
-        Task<MedicoDTO> GetByCRM(int? CRM);
+        Task<MedicoDTO> GetById(int id);
         Task Add(MedicoDTO medicoDTO);
         Task Update(MedicoDTO medicoDTO);
-        Task Remove(long id);
+        Task Remove(int id);
     }
 }
